@@ -48,3 +48,31 @@ To fix lint errors:
 ```
 yarn lint --fix
 ```
+
+## E2E
+
+Install Detox globally
+
+```
+npm install -g detox-cli
+```
+
+Make sure to build the app first for Android and iOS
+
+```
+yarn build:ios
+```
+
+```
+yarn build:android
+```
+
+Run tests with
+
+```
+yarn e2e:ios
+```
+
+```
+yarn e2e:android
+```
