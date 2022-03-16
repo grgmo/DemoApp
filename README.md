@@ -39,7 +39,7 @@ yarn test
 To run TypeScript and ESLint checks:
 
 ```
-yarn tsc
+yarn typecheck
 yarn lint
 ```
 
