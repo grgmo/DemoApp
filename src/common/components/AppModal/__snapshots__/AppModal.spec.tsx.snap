@@ -32,6 +32,7 @@ exports[`AppModal should render modal correctly 1`] = `
           "opacity": 1,
         }
       }
+      testID="close_modal"
     >
       <View
         style={

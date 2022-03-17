@@ -26,7 +26,9 @@ const Restaurants = () => {
     setRestaurantURL(undefined);
   }, []);
 
-  const renderLoading = () => <ActivityIndicator size="large" />;
+  const renderLoading = () => (
+    <ActivityIndicator testID="loader" size="large" />
+  );
 
   return (
     <SafeAreaView style={styles.container}>

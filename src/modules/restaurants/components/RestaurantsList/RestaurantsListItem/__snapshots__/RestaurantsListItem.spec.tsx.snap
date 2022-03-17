@@ -30,6 +30,7 @@ exports[`RestaurantsListItem should render list item correctly 1`] = `
       },
     ]
   }
+  testID="restaurant-0"
 >
   <Text
     accessibilityRole="text"

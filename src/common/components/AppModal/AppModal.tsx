@@ -20,7 +20,7 @@ const AppModal: FC<AppModalType> = ({children, onRequestClose, ...props}) => {
       {...props}>
       <SafeAreaView style={styles.container}>
         <>
-          <Button title="Close" onPress={onRequestClose} />
+          <Button testID="close_modal" title="Close" onPress={onRequestClose} />
           {children}
         </>
       </SafeAreaView>

@@ -9,6 +9,7 @@ type RestaurantsListItemProps = {
   locality: string;
   postCode: string;
   url: string;
+  index: number;
   onPress: (url: string) => void;
 };
 
@@ -19,6 +20,7 @@ const RestaurantsListItem: FC<RestaurantsListItemProps> = ({
   postCode,
   url,
   onPress,
+  index,
 }) => {
   const itemStyle = ({pressed}: PressableStateCallbackType) => [
     {
@@ -33,6 +35,7 @@ const RestaurantsListItem: FC<RestaurantsListItemProps> = ({
 
   return (
     <Pressable
+      testID={`restaurant-${index}`}
       accessibilityRole="button"
       style={itemStyle}
       onPress={handlePress}>

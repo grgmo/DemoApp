@@ -14,7 +14,7 @@ describe('RestaurantsListItem', () => {
   let listItem: RenderAPI;
 
   beforeEach(() => {
-    listItem = render(<RestaurantsListItem {...mockItem} />);
+    listItem = render(<RestaurantsListItem {...mockItem} index={0} />);
   });
 
   it('should render list item correctly', () => {

@@ -20,8 +20,8 @@ const RestaurantsList: FC<RestaurantsListListProps> = ({
   data,
   onRestaurantItemPress,
 }) => {
-  const renderItem: FC<ListRenderItemInfo<Restaurant>> = ({item}) => (
-    <ListItem {...item} onPress={onRestaurantItemPress} />
+  const renderItem: FC<ListRenderItemInfo<Restaurant>> = ({item, index}) => (
+    <ListItem {...item} index={index} onPress={onRestaurantItemPress} />
   );
 
   return (
