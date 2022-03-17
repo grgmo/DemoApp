@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantsListItem should render list item correctly 1`] = `
+<View
+  accessibilityRole="button"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+      },
+      Object {
+        "borderColor": "lightgrey",
+        "borderRadius": 2,
+        "borderWidth": 1.5,
+        "marginHorizontal": 10,
+        "paddingHorizontal": 10,
+        "paddingVertical": 15,
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "marginBottom": 10,
+        },
+        Object {
+          "fontSize": 18,
+        },
+        Object {
+          "fontWeight": "bold",
+        },
+      ]
+    }
+  >
+    title
+  </Text>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "fontSize": 16,
+        },
+      ]
+    }
+  >
+    street
+  </Text>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "fontSize": 16,
+        },
+      ]
+    }
+  >
+    locality
+  </Text>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "fontSize": 16,
+        },
+      ]
+    }
+  >
+    postCode
+  </Text>
+</View>
+`;

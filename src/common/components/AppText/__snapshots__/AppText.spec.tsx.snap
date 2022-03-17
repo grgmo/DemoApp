@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppText should render default text correctly 1`] = `
+<Text
+  accessibilityRole="text"
+  style={
+    Array [
+      Object {
+        "color": "black",
+        "fontSize": 14,
+      },
+    ]
+  }
+>
+  text
+</Text>
+`;

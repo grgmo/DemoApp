@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantsHeader should render header correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "paddingVertical": 15,
+    }
+  }
+>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "marginBottom": 5,
+        },
+        Object {
+          "fontSize": 22,
+        },
+        Object {
+          "fontWeight": "bold",
+        },
+      ]
+    }
+  >
+    title
+  </Text>
+  <Text
+    accessibilityRole="text"
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontSize": 14,
+        },
+        Object {
+          "fontSize": 14,
+        },
+      ]
+    }
+  >
+    Version subTitle
+  </Text>
+</View>
+`;
