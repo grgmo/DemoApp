@@ -1,5 +1,11 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {
+  ActivityIndicator,
+  Animated,
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 import WebView from 'react-native-webview';
 
 import AppModal from '../../../common/components/AppModal/AppModal';
@@ -12,6 +18,7 @@ import useRestaurants from '../hooks/useRestaurants';
 const Restaurants = () => {
   const [restaurantURL, setRestaurantURL] = useState<string>();
   const {data, error, loading, fetchRestaurants} = useRestaurants();
+  const scrollPosition = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     fetchRestaurants();
@@ -30,12 +37,29 @@ const Restaurants = () => {
     <ActivityIndicator testID="loader" size="large" />
   );
 
+  const scale = scrollPosition.interpolate({
+    inputRange: [-Dimensions.get('window').height, 0],
+    outputRange: [4, 1],
+    extrapolate: 'clamp',
+  });
+
   return (
     <SafeAreaView style={styles.container}>
-      <RestaurantsHeader title="Nando's Restaurants" subTitle={appVersion} />
+      <Animated.View testID="animated_header" style={{transform: [{scale}]}}>
+        <RestaurantsHeader title="Nando's Restaurants" subTitle={appVersion} />
+      </Animated.View>
       {error && <AppText center text={error} />}
       {loading && <ActivityIndicator testID="loader" size="large" />}
-      <List data={data} onRestaurantItemPress={handleRestaurantItemPress} />
+      {data && (
+        <List
+          data={data}
+          onRestaurantItemPress={handleRestaurantItemPress}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {y: scrollPosition}}}],
+            {useNativeDriver: true},
+          )}
+        />
+      )}
       <AppModal visible={Boolean(restaurantURL)} onRequestClose={closeModal}>
         {restaurantURL && (
           <WebView

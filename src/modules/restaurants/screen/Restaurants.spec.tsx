@@ -1,4 +1,5 @@
 import React from 'react';
+import {Dimensions} from 'react-native';
 import {
   fireEvent,
   render,
@@ -9,6 +10,12 @@ import {
 import {WebViewProps} from 'react-native-webview';
 
 import Restaurants from './Restaurants';
+
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
+Dimensions.get = jest.fn(() => ({
+  height: 100,
+})) as jest.Mock;
 
 jest.mock('react-native-webview', () => {
   const {View} = require('react-native');
@@ -82,11 +89,15 @@ describe('Restaurants', () => {
       json: () => Promise.resolve(mockRestaurants),
     });
 
-    const {getByTestId, queryByTestId, getAllByRole} = render(<Restaurants />);
+    const {getByTestId, queryByTestId, getAllByRole, getByRole} = render(
+      <Restaurants />,
+    );
 
     expect(getByTestId('loader')).toBeDefined();
 
     await waitForElementToBeRemoved(() => queryByTestId('loader'));
+
+    getByRole('list');
 
     const listItems = getAllByRole('button');
 
@@ -108,11 +119,15 @@ describe('Restaurants', () => {
       json: () => Promise.resolve(mockRestaurants),
     });
 
-    const {getByTestId, queryByTestId, getAllByRole} = render(<Restaurants />);
+    const {getByTestId, queryByTestId, getAllByRole, getByRole} = render(
+      <Restaurants />,
+    );
 
     expect(getByTestId('loader')).toBeDefined();
 
     await waitForElementToBeRemoved(() => queryByTestId('loader'));
+
+    getByRole('list');
 
     const restuarantItem = getAllByRole('button')[0];
 
@@ -137,13 +152,14 @@ describe('Restaurants', () => {
       json: () => Promise.resolve(mockRestaurants),
     });
 
-    const {getByTestId, queryByTestId, getAllByRole, getByText} = render(
-      <Restaurants />,
-    );
+    const {getByTestId, queryByTestId, getAllByRole, getByText, getByRole} =
+      render(<Restaurants />);
 
     expect(getByTestId('loader')).toBeDefined();
 
     await waitForElementToBeRemoved(() => queryByTestId('loader'));
+
+    getByRole('list');
 
     const restuarantItem = getAllByRole('button')[0];
 
@@ -160,5 +176,43 @@ describe('Restaurants', () => {
     fireEvent.press(closeButton);
 
     expect(getByTestId('modal').props.visible).toBe(false);
+  });
+
+  it('should scale header on scroll', async () => {
+    mockData = Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockRestaurants),
+    });
+
+    const {getByTestId, getByRole} = render(<Restaurants />);
+
+    expect(getByTestId('loader')).toBeDefined();
+
+    await waitFor(() => getByRole('list'));
+
+    const header = getByTestId('animated_header');
+
+    expect(header.props.style.transform[0].scale).toBe(1);
+
+    const eventData = {
+      nativeEvent: {
+        contentOffset: {
+          y: -200,
+        },
+        contentSize: {
+          // Dimensions of the scrollable content
+          height: 500,
+          width: 100,
+        },
+        layoutMeasurement: {
+          // Dimensions of the device
+          height: 100,
+          width: 100,
+        },
+      },
+    };
+    fireEvent.scroll(getByRole('list'), eventData);
+
+    expect(header.props.style.transform[0].scale).toBe(4);
   });
 });
