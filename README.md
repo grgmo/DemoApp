@@ -92,3 +92,4 @@ yarn e2e:android
 4. run E2E on Bitrise, currently just running lint, typescript and unit tests
 5. improve refetching on Restaurants screen where if there is network error there is no way to refresh the page at the moment
 6. add debug, release config on Detox for iOS and Android, currently it defaults to debug
+7. add storybook to build UI components
